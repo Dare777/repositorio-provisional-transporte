@@ -1,5 +1,9 @@
 import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
 
+// a: Una API abreviada para definir modelos y campos de esquema.
+// defineData: Una función para configurar el modelo de datos en Amplify.
+// ClientSchema: Un tipo utilizado para inferir la estructura del esquema para el uso del frontend.
+
 /*== STEP 1 ===============================================================
 The section below creates a Todo database table with a "content" field. Try
 adding a new "isDone" field as a boolean. The authorization rule below
@@ -14,11 +18,13 @@ const schema = a.schema({
     .authorization((allow) => [allow.guest()]),
 });
 
+// Esto permite que el esquema se utilice como un tipo TypeScript en consultas frontend.
 export type Schema = ClientSchema<typeof schema>;
 
 export const data = defineData({
-  schema,
+  schema, // Pasa la definición del esquema a Amplify.
   authorizationModes: {
+    // Especifica el modo de autenticación predetermiando
     defaultAuthorizationMode: 'iam',
   },
 });
